@@ -9,28 +9,32 @@ body{
     font-family: sans-serif;
 }
 
-
+/* h3 heading setup */
 h3{
 
     color: white;
 }
 
+/* paragraph setup */
 p{
 
     color: white;
 }
 
+/* h1 heading setup */
 h1{
 
     color: white;
 }
 
+/* hyperlink setup */
 a{
 
     text-align: center;
     float: center;
 }
 
+/* topNavigation class*/
 .topNavigation{
 
     overflow: hidden;
@@ -38,9 +42,10 @@ a{
     padding: 10px;
 }
 
+/* Setup of hyperlink within topNavigation class */
 .topNavigation a{
 
-    float: left;
+    float: left; /* The allignment I want*/
     display: block;
     color: white;
     text-align: center;
@@ -54,6 +59,7 @@ a{
     float: right;
 }
 
+/*Input form setup*/
 form{
 
     background-color: #151f30;
@@ -64,6 +70,7 @@ form{
     alight-items: center;
 }
 
+/*Copyright setup on reviews page*/
 .copyright {
     position: absolute;
     top: 0;
@@ -73,7 +80,7 @@ form{
     font-size: 12px;
   }
 
-
+/*Copyright setup on initial search page*/
   .copyright_first {
     position: absolute;
     bottom: 0;
@@ -83,7 +90,7 @@ form{
     font-size: 12px;
   }
 
-
+/*Input setup*/
 input{
 
     all: unset;
@@ -94,6 +101,7 @@ input{
     padding: 6px 9px;
 }
 
+/*thumbnail setup*/
 .thumbnail{
 
     height: 400px;
@@ -101,6 +109,7 @@ input{
     border-radius: 19px;
 }
 
+/*Column allignment setup, this is within a row and contains a thumbnail. also contains the cards */
 .column {
 
     float: left;
@@ -108,6 +117,7 @@ input{
     padding: 10px 10px;
 }
 
+/*Card allignment setup, this contains all the weather information */
 .card{
     float: center;
     height: 700px;
@@ -117,12 +127,13 @@ input{
     text-align: center;
     background-color: #151f30;
 }
-
+ /*Image setup, this is contained by a card*/
 img{
 
     text-align: center;
 }
 
+/*helps with the deign of box, when its time to add a review*/
 #add-review {
     margin-top: 20px;
     padding: 10px;
@@ -141,9 +152,9 @@ img{
 input[type="text"] {
     background-color: white;
     color: black;
-    width: 100%; /* Makes it span the full width of the card */
-    height: 80px; /* Increases height for better visibility */
-    padding: 8px; /* Adds padding for better readability */
+    width: 100%; 
+    height: 80px; 
+    padding: 8px; /* For good cushioning*/
     border: 1px solid #ccc; /* Adds a light border */
     border-radius: 5px; /* Rounds the edges slightly */
     box-sizing: border-box; /* Ensures padding doesn't affect width */
@@ -160,20 +171,20 @@ input[type="text"] {
     padding: 20px; /* Adds internal spacing within the card */
   }
   
-  /* Styling for Submit Review Button */
+  /* Styling for my Submit Review Button */
 .submit-btn {
-    background-color: #4CAF50; /* Green background */
-    color: white; /* White text */
-    border: 2px solid #4CAF50; /* Green border */
-    border-radius: 8px; /* Slightly rounded edges */
-    padding: 10px 20px; /* Add some padding */
-    font-size: 16px; /* Comfortable font size */
-    cursor: pointer; /* Show pointer on hover */
+    background-color: #4CAF50; 
+    color: white; 
+    border: 2px solid #4CAF50; 
+    border-radius: 8px; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    cursor: pointer; /*To show pointer on hover */
     transition: 0.3s ease; /* Smooth hover effect */
   }
   
   .submit-btn:hover {
-    background-color: white; /* Change background to white on hover */
-    color: #4CAF50; /* Change text to green on hover */
+    background-color: white; /* Changes the background to white on hover */
+    color: #4CAF50; /* Change text back to green on hover */
   }
   
