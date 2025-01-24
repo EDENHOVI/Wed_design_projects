@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="View and add weather reviews for cities around the world."
+    />
+    <title>Hovi Weather App - Reviews</title>
+    <link rel="stylesheet" href="Style.css" />
+  </head>
+
+  <body>
+    <div class="copyright">
+      &copy; 2025 Hovi Weather App. All rights reserved.
+    </div>
+
+    <header>
+      <div class="topNavigation">
+        <a class="active" href="index.html">Home</a>
+        <a href="about.html">About</a>
+      </div>
+    </header>
+
+    <main>
+      <div style="padding-left: 16px">
+        <h1>Reviews for:</h1>
+        <h3 id="name_of_city">cityName</h3>
+
+        <section id="section" role="region" aria-label="Reviews Section">
+          <p>No reviews yet. Be the first to add one!</p>
+        </section>
+      </div>
+    </main>
+
+    <script src="weather.js"></script>
+  </body>
+</html>
