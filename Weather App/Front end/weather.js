@@ -1,17 +1,19 @@
-const url = new URL(location.href);
-const cityName = url.searchParams.get("cityName");
+const url = new URL(location.href); //creating a URL object for use
+const cityName = url.searchParams.get("cityName"); //URL object used in an HTTP request
 
+//To catch the errors where the city name is not well transmitted.
 if (!cityName) {
-  alert("City name not provided in the URL!");
+  alert("City name not provided in the URL!"); 
 } else {
   name_of_city.innerText = cityName;
 }
 
+//Link to the backend API I built on Replit
 const reviews_API_Link = "https://295c58cb-4830-44a8-9cdd-b5fcf1cecfc5-00-n809s5mte2vu.worf.replit.dev/api/v1/reviews/";
 
 const main = document.getElementById("section");
 
-// New Review Form
+// New Review Form for user to make new review. There are input fields 
 const div_new = document.createElement('div');
 div_new.innerHTML = `
   <div class="row">
@@ -32,7 +34,7 @@ div_new.innerHTML = `
 `;
 main.appendChild(div_new);
 
-// Fetch and Display Reviews
+// Fetch and Display the avilable Reviews (From the mongodb database)
 returnReviews(reviews_API_Link);
 
 function returnReviews(url) {
@@ -62,6 +64,7 @@ function returnReviews(url) {
     .catch(err => console.error("Error fetching reviews:", err));
 }
 
+//This enables one to be able to edit an already existing review
 function editReview(id, review, user) {
   const element = document.getElementById(id);
   const reviewInputId = "review" + id;
@@ -78,6 +81,8 @@ function editReview(id, review, user) {
   `;
 }
 
+//Enables user to save a review via APi to the mongodb database, after editing it or just making it for the first time
+//It makes use of PUT (for editing) and POST (For posting) curl commands.
 function saveReview(reviewInputId, userInputId, id = "") {
   const review = document.getElementById(reviewInputId).value;
   const user = document.getElementById(userInputId).value;
@@ -101,6 +106,7 @@ function saveReview(reviewInputId, userInputId, id = "") {
     .catch(err => console.error("Error saving review:", err));
 }
 
+//Enables the user to be able to 
 function deleteReview(id) {
   fetch(reviews_API_Link + id, {
     method: 'DELETE'
