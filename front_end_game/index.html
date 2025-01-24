@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Class sort!</title>
+    <link rel="stylesheet" href="swagg.css" />
+  </head>
+
+  <body>
+    <div id="game">
+      <div id="stats">
+        <span class="stat">Class sort innit!!</span>
+      </div>
+
+      <div id="controls">
+        <button id="button1">Click to start game</button>
+      </div>
+
+      <div id="monsterStats">
+        <span class="stat"
+          >Monster Name: <strong><span id="monsterName"></span></strong
+        ></span>
+        <span class="stat"
+          >Health: <strong><span id="monsterHealth"></span></strong
+        ></span>
+      </div>
+
+      <div id="text">Welcome to the Class Sort game!</div>
+
+      <div id="class_Selection" style="display: none">
+        <form>
+          <input type="checkbox" name="class" id="plants" value="Plants" />
+          <label for="plants" style="color: purple">Plants</label>
+          <br />
+
+          <input type="checkbox" name="class" id="rocks" value="Rocks" />
+          <label for="rocks" style="color: purple">Rocks</label>
+          <br />
+
+          <input type="checkbox" name="class" id="food" value="Food" />
+          <label for="food" style="color: purple">Food</label>
+          <br />
+
+          <input type="checkbox" name="class" id="animals" value="Animals" />
+          <label for="animals" style="color: purple">Animals</label>
+          <br />
+
+          <input type="submit" />
+        </form>
+      </div>
+    </div>
+
+    <!--<button id="showFormButton">Show Form</button> -->
+
+    <script src="Functionality.js"></script>
+  </body>
+</html>

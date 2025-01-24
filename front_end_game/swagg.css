@@ -1,0 +1,80 @@
+body {
+    background-color: peachpuff;
+  }
+  
+  #text {
+    background-color: black;
+    color: white;
+    padding: 20px;
+  }
+
+
+#game {
+    max-width: 600px;
+    background-color: lightgray;
+    color: white;
+    margin: 0 auto;
+    padding: 10px;
+    border: 2px solid black; /* Adds a black border */
+    position: relative; /* Establish positioning context */
+    overflow-y: auto; /* Enables vertical scrolling */
+  }
+  
+
+  .submit-btn {
+    position: absolute;
+    bottom: 10px; /* Adjust distance from the bottom */
+    right: 10px; /* Adjust distance from the right */
+    /*background-color: red;*/
+    color: black;
+    padding: 10px 20px; /* Add some padding for a better look */
+    border: none;
+    border-radius: 5px; /* Optional: rounded corners */
+    cursor: pointer; /* Change cursor to pointer */
+  }
+  
+  #controls {
+    border: 1px black solid;
+    padding: 5px;
+
+  }
+  
+  #stats {
+    border: 1px black solid;
+    color: black;
+    padding: 5px;
+  }
+  
+  #monsterStats {
+    display: none;
+    border: 1px black solid;
+    color: white;
+    padding: 5px;
+    background-color: red;
+  }
+  
+  .stat {
+    padding-right: 10px;
+  }
+
+  #class_selection{
+
+    padding:5px ;
+    /*color: rgb(108, 14, 110);*/
+    border: 2px black solid;
+  }
+
+  .black-text {
+    color: black;
+  }
+
+  .submit-button {
+    position: absolute;
+    right: 0;
+    bottom: 10px; /* You can adjust the distance from the bottom */
+}
+
+
+/*#class_selection label {
+  color: rgb(108, 14, 110); 
+}*/
