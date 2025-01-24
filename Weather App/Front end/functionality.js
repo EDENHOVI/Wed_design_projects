@@ -1,11 +1,12 @@
-const WEATHER_API_KEY = "400be3410cfc465789f60313250801";
-const IMG_API_KEY = "QLI0KQmpsRwdlpc_1lWnxL2MlkmSk5yOU4EMAoa1RB4";
+const WEATHER_API_KEY = "400be3410cfc465789f60313250801"; //The key to my weather API
+const IMG_API_KEY = "QLI0KQmpsRwdlpc_1lWnxL2MlkmSk5yOU4EMAoa1RB4"; // The key to my image API
 
+//For the sections needed
 const main = document.getElementById("section");
 const form = document.getElementById("form");
 const search = document.getElementById("query");
 
-function returnCityImage(query) {
+function returnCityImage(query) { //sends a query to my image API for the city searched, the API in return sends a popular image of the city
     const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&client_id=QLI0KQmpsRwdlpc_1lWnxL2MlkmSk5yOU4EMAoa1RB4`;
   
     return fetch(url)
@@ -30,9 +31,8 @@ function returnCityImage(query) {
   }
 
   
-
-  function returnCityData(url) {
-    fetch(url)
+  function returnCityData(url) { //This fuction sends a query to my weather API for the city searched, the API in return sends all the 
+    fetch(url)                   // data sets for the weather fields like temperature, humidity, wind speeed, condition, etc. city name also
       .then((res) => res.json())
       .then((data) => {
         if (!data || !data.location) {
@@ -40,29 +40,29 @@ function returnCityImage(query) {
           return;
         }
   
-
+        //In this section, I am instatiating the fields before I assign them.
         const cityNameText = data.location.name;
 
         const city_name = document.createElement('h3');
-        city_name.textContent = `City: ${data.location.name}`;
+        city_name.textContent = `City: ${data.location.name}`; // assigning City name
   
         const temperature = document.createElement('h3');
-        temperature.textContent = `Temperature: ${data.current.temp_c}°C`;
+        temperature.textContent = `Temperature: ${data.current.temp_c}°C`; // assigning Temperature
   
         const rain_info = document.createElement('h3');
-        rain_info.textContent = `Condition: ${data.current.condition.text}`;
+        rain_info.textContent = `Condition: ${data.current.condition.text}`; // assigning Condition
   
         const humidity = document.createElement('h3');
-        humidity.textContent = `Humidity: ${data.current.humidity}%`;
+        humidity.textContent = `Humidity: ${data.current.humidity}%`; // assigning Humidity
   
         const windspeed = document.createElement('h3');
-        windspeed.textContent = `Wind Speed: ${data.current.wind_kph} km/h`;
+        windspeed.textContent = `Wind Speed: ${data.current.wind_kph} km/h`; // assigning Wind Speed
   
-         // Create a link to the weather reviews page
+         // Creating the link to the weather reviews page called weather.html
         const reviews = document.createElement('a');
         reviews.href = `weather.html?cityName=${encodeURIComponent(cityNameText)}`;
         reviews.textContent = 'Reviews';
-        reviews.style.color = '#FC6600'; // Optional: style the link as desired
+        reviews.style.color = '#FC6600'; 
         
         const div_card = document.createElement('div');
         div_card.className = 'card'; // Add styling class
@@ -76,11 +76,11 @@ function returnCityImage(query) {
         // Fetch and append the image
         returnCityImage(data.location.name).then((img) => {
           if (img) {
-            div_card.appendChild(img); // Add the styled image
+            div_card.appendChild(img); // Adding the styled image
           }
   
           const div_column = document.createElement('div');
-          div_column.className = 'column'; // Add column styling
+          div_column.className = 'column'; // Adding column styling
           div_column.appendChild(div_card);
   
           main.appendChild(div_column);
@@ -92,7 +92,8 @@ function returnCityImage(query) {
       });
   }
   
-
+  // This function enables the search query when I type in a city name and het enter, thanks to its event listner traits
+  // This query goes to both the returnImage and weather APIs
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     main.innerHTML = ''; // Clear previous results
