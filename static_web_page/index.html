@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Patch antenna array design</title>
+    <!-- This is what is seen as the webpage title-->
+    <link
+      rel="icon"
+      type="image/png"
+      href="Design pictures/Patch antenna Favicon.png"
+    />
+
+    <style>
+      body {
+        background-color: lightpink;
+        opacity: 2;
+      }
+
+      .p {
+        border-style: groove;
+      }
+
+      .title {
+        font-weight: bold;
+        font-size: x-large;
+      }
+
+      img {
+        width: 650px;
+        height: 450px;
+      }
+
+      em {
+        color: red;
+        font-style: normal;
+      }
+
+      .profile.image {
+        width: 150px; /* Adjust width as needed */
+        height: 150px; /* Ensure height matches the width */
+        border-radius: 50%; /* Makes the image a perfect circle */
+        float: left;
+        margin-right: 20px;
+        object-fit: cover; /* Ensures the image fills the circle without distortion */
+      }
+
+      tr:hover {
+        background-color: red;
+      }
+    </style>
+
+    <meta
+      name="keywords"
+      content="patch, Antenna, Array, impedance, return loss"
+    />
+    <meta name="description" , content="Patch-antenna array design" />
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <p class="title">Patch antenna design flow</p>
+    <h4>By Sam da mon</h4>
+
+    <a href="mailto:rambothecollector@gmail.com"
+      >Click to contact Sam via email</a
+    >
+
+    <i class="material-icons">cloud</i>
+    <i class="material-icons">computer</i>
+    <!-- your Icon-->
+
+    <img
+      class="profile image"
+      src="Design pictures/Selfie pic.jpeg"
+      alt="Profile Image"
+    />
+
+    <p>
+      A patch antenna is a type of antenna used for wifi and bluetooth
+      applications, you will typically see them being used in the
+      <em>1GHz to 10+ GHz</em> frequency range. They are PCB type antennas, so
+      they require subtrate, ground and plenty optimization
+    </p>
+    <p>
+      There are different ways to feed your patch antenna, it can be
+      <mark>transmission line feeding, probe feeding, aperture feeding,</mark>
+      etc. When designing patch antennas, you start out with equations for your
+      dimensions based on operating frequency, substrate dielectric constant,
+      substrate height, etc. The equations are never totally accurate, so tuning
+      and optimization in whatever software youre using is required for you to
+      meet your specifications.
+    </p>
+    <p>
+      In this document, I will walk you through my patch antenna design from
+      single patch to arrays. For a single patch antenna, one can plug in
+      certain information into an online tool to help with calculations, instead
+      of doing the calculations by hand. In the <ins>appendix</ins> I have
+      pasted a link to a well known patch and strip calculator (same one I
+      used). Below is an example of one of the usages of the tool.
+    </p>
+
+    <p>
+      First, I need to calculate the initial length and width of the patch and
+      microstrip line since I am following this form of the Image shown below
+      where the feed is a <em>50 ohm</em> strip line (connected to an SMA
+      connector via soldering) followed by the <em>quarter-wave</em> strip line
+      for matching the 50 ohm input to the impedance of the patch for maximum
+      power transfer.
+    </p>
+    <p>
+      Initially from an online calculator using the equations for patch antenna
+      modelling, I have:
+    </p>
+
+    <img
+      src="Design pictures/Example of patch calculation.png"
+      alt="Example of patch calculation"
+    />
+    <h5>Example of patch calculation</h5>
+    <img
+      src="Design pictures/Example of stripline calculation.png"
+      alt="Example of microstripline calculation"
+    />
+    <h5>Example of microstrip lin calculation</h5>
+    <br />
+    <p>My initial implementation in HFSS looks like:</p>
+
+    <img
+      src="Design pictures/HFSS single patch implementation.png"
+      alt="HFSS single patch implementation"
+    />
+    <h5>HFSS single patch implementation</h5>
+    <br />
+    <p>
+      I aimed for 2.45 GHz frequency of operation but I have a resonance of 2.47
+      GHz in the image below. The Return loss is also around -19 dB, which is
+      really good!
+    </p>
+
+    <p>
+      Typically, in antenna design, you want your return loss at the desired
+      frequency to by -10dB or lower. This is to ensure that at least 90% of the
+      power sent to the antenna is used to radiate the signal, meaning only 10%
+      or less is reflected back to the source
+    </p>
+
+    <img
+      src="Design pictures/HFSS single patch results.png"
+      alt="HFSS single patch results"
+    />
+    <h5>HFSS single patch results</h5>
+    <br />
+    <p>
+      Which is at around 2.47 MHz but with optimization, I can make it get
+      centred at exactly 2.45GHz. Next, I explore antenna arrays for enhancement
+      of gain and directivity.I came up with the same design in ADS where I
+      have:
+    </p>
+
+    <img
+      src="Design pictures/ADS single patch implementation.png"
+      alt="ADS single patch implementation"
+    />
+    <h5>ADS single patch implementation</h5>
+    <br />
+    <p>and:</p>
+    <img
+      src="Design pictures/ADS single patch layout.png"
+      alt="ADS single patch layout"
+    />
+    <h5>ADS single patch layout</h5>
+    <br />
+    <p>Next, I have the following results in ADS:</p>
+
+    <img
+      src="Design pictures/ADS single patch results.png"
+      alt="ADS single patch results"
+    />
+
+    <h5>ADS single patch results</h5>
+    <br />
+    <p>
+      I would say my EM simulation in ADS was more accurate than what I got in
+      HFSS. I experimented with having the quarter wave matching network come
+      first and the results were still the same.
+    </p>
+
+    <p class="title">Antenna Array theory and implementation</p>
+
+    <p>
+      Now you understand how single patch antennas work, we can move on to
+      arrays. Next I try a 2x1 array in ADS where I start off with drawing out
+      my plan, my plan shows the patch, transmission lines and the quarter-wave
+      transmission lines. My drawing is:
+    </p>
+
+    <img
+      src="Design pictures/Array theory.png"
+      alt="Array theory image depiction"
+    />
+    <h5>Array theory image image depiction</h5>
+    <br />
+    <p>
+      When designing patch antenna arrays, you are simply doing continous
+      impedance matching. One needs to understand what the impedance at the
+      edges of the patch are so one can use online calculation tools to estimate
+      the dimensions of the microstrip lines based on impedance, frequency and
+      electrical length requirements
+    </p>
+
+    <p>
+      Just like before where is used the online calculator to calculate the
+      dimensions of the transmission lines with the assumption of a 180 degree
+      phase shift for since there will be no change in the impedance seen at
+      either end of the transmission line (impedance repeating). When there is
+      an impedance repeat there is no mismatch in impedance from one end to
+      another since impedances will be mirrored from one end to another. I also
+      do the calculations with the calculator for the quarter wave sections, In
+      the end all this is to ensure that the feed of 50 ohms Is constant
+      regardles. My schematic implementation is:
+    </p>
+
+    <img
+      src="Design pictures/ADS 2x1 array implementation.png"
+      alt="ADS 2x1 array implementation"
+    />
+    <h5>ADS 2x1 array implementation</h5>
+    <br />
+    <p>My layout is:</p>
+
+    <img src="Design pictures/ADS 2X1 layout.png" alt="ADS 2X1 layout" />
+    <h5>ADS 2X1 layout</h5>
+    <br />
+    <p>I have the results:</p>
+
+    <img src="Design pictures/ADS 2x1 results.png" alt="ADS 2x1 results" />
+
+    <h5>ADS 2x1 results</h5>
+    <br />
+    <h3 style="color: brown">2x2 Array implementation</h3>
+    <p>
+      Next with my same concepts I expand into a 2x2 array, again I ensure it
+      all matches to a 50 ohms input feed. I have the following schematic
+      design:
+    </p>
+
+    <img
+      src="Design pictures/ADS 2X2 implementation.png"
+      alt="ADS 2X2 implementation"
+    />
+
+    <h5>ADS 2X2 implementation</h5>
+    <br />
+    <p>The layout is:</p>
+
+    <img src="Design pictures/ADS 2X2 Layout.png" alt="ADS 2X2 layout" />
+    <h5>ADS 2X2 layout</h5>
+    <br />
+
+    <p>
+      Mind you I made the 100 ohm transmission lines at the very bottom
+      dispersion to be longer (full lambda or 360 degrees) so that the 2nd and
+      3rd patches don’t touch each other. I have the results of:
+    </p>
+
+    <img src="Design pictures/ADS 2x2 results.png" alt="ADS 2x2 results" />
+    <h5>ADS 2x2 results</h5>
+    <br />
+
+    <h4>To download my design flow document, click the link below:</h4>
+
+    <a
+      href="My references/My microstrip line patch antennas (single to arrays).docx"
+      download=""
+      >My design flow</a
+    >
+    <hr />
+    <h3>References:</h3>
+    <a href="https://waffl.link/SZ3XXA">
+      Design and analysis of patch microstrip antenna arrays</a
+    >
+    <hr />
+    <h3>Appendix:</h3>
+
+    <a href="https://www.emtalk.com/mpacalc.php" target="_blank"
+      >Patch antenna calculator</a
+    >
+    <p></p>
+    <a href="https://www.emtalk.com/mscalc.php" target="_blank"
+      >Microstrip line calculator</a
+    >
+
+    <h5>
+      Tables of typical antenna design substrates and their dielectric Constants
+    </h5>
+    <table border="2">
+      <thead>
+        <tr>
+          <th>Substrate</th>
+          <th>Dielectric Constant (εr)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>FR4</td>
+          <td>4.4</td>
+        </tr>
+        <tr>
+          <td>Rogers RT5880</td>
+          <td>2.2</td>
+        </tr>
+        <tr>
+          <td>Rogers RO4350B</td>
+          <td>3.48</td>
+        </tr>
+        <tr>
+          <td>Duroid 5880</td>
+          <td>2.2</td>
+        </tr>
+        <tr>
+          <td>Polyimide</td>
+          <td>3.5</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr />
+
+    <a href="#">Click to jump back to the top of page</a>
+  </body>
+</html>
